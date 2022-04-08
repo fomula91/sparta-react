@@ -1,0 +1,10 @@
+import React from "react";
+import { useParams } from "react-router-dom";
+const Cat = (props) => {
+  //   const cat_name = useParams();
+  //   console.log(cat_name);
+  //console.log(props);
+  return <div>CAT</div>;
+};
+
+export default Cat;

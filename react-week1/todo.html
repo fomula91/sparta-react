@@ -4,18 +4,82 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>오늘의 투두</title>
+    <style>
+      .wrap {
+        display: flex;
+      }
+      #title {
+        color: blue;
+        text-decoration: underline;
+      }
+      .todo-card {
+        border: 1px solid gray;
+        padding: 2em;
+        margin: 1em;
+        border-radius: 5px;
+      }
+
+      button {
+        width: calc(80% - 20px);
+      }
+      button:hover {
+        background-color: orange;
+      }
+    </style>
   </head>
   <body>
-    <h1>오늘 할 일</h1>
-    <h3>고양이 밥주기</h3>
-    <p>고양이 물, 사료 챙겨주기</p>
-    <button>완료</button>
-    <h3>장보기</h3>
-    <p>토마토, 계란, 초코렛 사기</p>
-    <button>완료</button>
-    <h3>코딩하기</h3>
-    <p>리액트 강의1주차듣기</p>
-    <button>완료</button>
+    <h1 id="title">오늘 할 일</h1>
+    <div class="wrap">
+      <div class="todo-card">
+        <h3>고양이 밥주기</h3>
+        <p>고양이 물, 사료 챙겨주기</p>
+        <button onClick="changeBackgroundColor(0)">완료</button>
+      </div>
+      <div class="todo-card">
+        <h3>장보기</h3>
+        <p>토마토, 계란, 초코렛 사기</p>
+        <button>완료</button>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="todo-card">
+        <h3>코딩하기</h3>
+        <p>리액트 강의1주차듣기</p>
+        <button>완료</button>
+      </div>
+      <div class="todo-card">
+        <h3>코딩하기</h3>
+        <p>리액트 강의1주차듣기</p>
+        <button>완료</button>
+      </div>
+    </div>
+    <script>
+      function changeBackgroundColor(index) {
+        let card = document.getElementsByClassName("todo-card")[index];
+        card.style.backgroundColor = "gray";
+      }
+      //   function sayHello(event) {
+      //     event.path[1].style.backgroundColor = "gray";
+      //   }
+      const wraps = document.getElementsByClassName("wrap");
+      console.log(wraps);
+      const title = document.getElementById("title");
+      console.log(title);
+      title.style.backgroundColor = "yellow";
+      const buttons = document.getElementsByTagName("button");
+      console.log(buttons);
+      //   for (let i = 0; i < buttons.length; i++) {
+      //     buttons[i].addEventListener("click", sayHello);
+      //   }
+
+      const new_div = document.createElement("div");
+      new_div.style.backgroundColor = "green";
+
+      new_div.style.width = "100px";
+      new_div.style.height = "100px";
+      document.body.appendChild(new_div);
+      console.log(new_div);
+    </script>
   </body>
 </html>

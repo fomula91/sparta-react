@@ -7,6 +7,16 @@ import { Router, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
 import { useDispatch } from "react-redux";
 import { createBucket } from "./redux/modules/bucket";
+import { db } from "./firebase";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 
 function App() {
   const text = React.useRef(null);
@@ -15,6 +25,10 @@ function App() {
   const addBucketList = () => {
     dispatch(createBucket({ text: text.current.value, completed: false }));
   };
+
+  React.useEffect(() => {
+    console.log(db);
+  }, []);
   return (
     <div className="App">
       <Container>
@@ -35,10 +49,10 @@ function App() {
       </Container>
       {/* 인풋박스와 추가하기 버튼을 넣어줬어요. */}
       <Input>
-        {/* <input type="text" ref={text} /> */}
-        <DataInput type="text" ref={text}></DataInput>
-        {/* <button onClick={addBucketList}>추가하기</button> */}
-        <ClickBtn onClick={addBucketList}>추가하기</ClickBtn>
+        <input type="text" ref={text} />
+        {/* <DataInput type="text" ref={text}></DataInput> */}
+        <button onClick={addBucketList}>추가하기</button>
+        {/* <ClickBtn onClick={addBucketList}>추가하기</ClickBtn> */}
       </Input>
       <button
         onClick={() => {
@@ -50,6 +64,7 @@ function App() {
     </div>
   );
 }
+
 const ClickBtn = styled.button`
   color: white;
   background: #d1c4e9;
@@ -60,6 +75,7 @@ const ClickBtn = styled.button`
     background: #a094b7;
   }
 `;
+
 const DataInput = styled.input.attrs((props) => ({
   type: "text",
 }))`
@@ -68,6 +84,7 @@ const DataInput = styled.input.attrs((props) => ({
     border: 3px solid orange;
   }
 `;
+
 const Input = styled.div`
   max-width: 350px;
   min-height: 10vh;
@@ -76,6 +93,26 @@ const Input = styled.div`
   margin: 20px auto;
   border-radius: 5px;
   border: 1px solid #ddd;
+  display: flex;
+
+  & > * {
+    padding: 5px;
+  }
+  & input {
+    border: 1px solid #888;
+    width: 70%;
+    margin-right: 10px;
+  }
+  & input:focus {
+    outline: none;
+    border: 1px solid #a673ff;
+  }
+  & button {
+    width: 25%;
+    color: white;
+    border: #a673ff;
+    background: #a673ff;
+  }
 `;
 
 const Container = styled.div`

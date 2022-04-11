@@ -15,9 +15,7 @@ const Progress = (props) => {
     <>
       <ProgressBar>
         <HighRight width={(count / bucket_list.length) * 100 + "%"}></HighRight>
-        <Circle>
-          <InCircle></InCircle>
-        </Circle>
+        <Dot></Dot>
       </ProgressBar>
     </>
   );
@@ -29,6 +27,7 @@ const ProgressBar = styled.div`
   width: 100%;
   height: 20px;
   border-radius: 50px;
+  align-items: center;
 `;
 
 const HighRight = styled.div`
@@ -39,26 +38,12 @@ const HighRight = styled.div`
   height: 20px;
   border-radius: 50px;
 `;
-const Circle = styled.div`
-  /* display: flex; */
-  /* align-items: flex; */
-  /* position: absolute; */
-  position: relative;
-  bottom: 15px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background: orange;
-
-  border-radius: 100px;
-`;
-const InCircle = styled.div`
-  position: absolute;
-  top: 5px;
-  left: 5px;
+const Dot = styled.div`
   width: 40px;
   height: 40px;
   background: white;
-  border-radius: 100px;
+  border: 5px solid #673ab7;
+  border-radius: 30px;
+  margin: 0px 0px 0px -20px;
 `;
 export default Progress;

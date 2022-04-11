@@ -20,6 +20,7 @@ const Detail = (props) => {
       <button
         onClick={() => {
           dispatch(updateBucket(bucket_index));
+          history.goBack();
         }}
       >
         완료하기

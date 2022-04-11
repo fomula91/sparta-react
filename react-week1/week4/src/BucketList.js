@@ -29,7 +29,8 @@ const BucketList = (props) => {
 };
 
 const ListStyle = styled.div`
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   max-height: 50vh;
   display: flex;
   flex-direction: column;

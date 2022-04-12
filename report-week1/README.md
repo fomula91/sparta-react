@@ -23,7 +23,7 @@
     * 무한 스크롤 구현
     * 게시글 수정해보기
 
-와이어 프레임
+와이어 프레임  
 ![](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fe1b4bc4f-bf71-4a4d-8ed5-90e54a3a78b3%2FUntitled.png?table=block&id=6109fee6-087f-4a09-80ab-4797bfd097f1&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=600&userId=&cache=v2)
 
 ![](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0e4f614a-6ff2-4535-ac8f-8a5720af4e27%2FUntitled.png?table=block&id=f9104848-4d3a-47f6-89aa-374e3093020d&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=600&userId=&cache=v2)

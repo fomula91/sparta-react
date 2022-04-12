@@ -13,7 +13,10 @@ function App() {
       <MainDiv>
         <MainH1>MY DICTIONARY</MainH1>
         <Route exact path="/">
-          <Detail></Detail>
+          <ContantDiv>
+            <Detail></Detail>
+          </ContantDiv>
+
           <Button
             onClick={() => {
               history.push("/adddic/");
@@ -39,15 +42,25 @@ const MainDiv = styled.div`
   align-content: center;
   position: relative;
   flex-direction: column;
-  width: 60vw;
-  height: 100vh;
-
+  width: 30vw;
+  max-width: 30vw;
+  height: 80%;
   background: #e3f2fd;
   margin: 5px;
 `;
 const MainH1 = styled.h1`
   height: 50px;
   margin: 1rem;
+`;
+const ContantDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: auto;
+  height: 80%;
+  max-height: 80vh;
 `;
 const Button = styled.div`
   color: white;

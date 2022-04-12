@@ -17,9 +17,6 @@ const Detail = (props) => {
   const bucket_index = params.index;
   const bucket_list = useSelector((state) => state.bucket.list);
 
-  const delBucket = () => {
-    dispatch(deleteBucket(bucket_index));
-  };
   return (
     <>
       <h1>{bucket_list[bucket_index] ? bucket_list[bucket_index].text : ""}</h1>

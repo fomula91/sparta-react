@@ -1,12 +1,13 @@
 import React from "react";
-import BucketList from "./BucketList";
-import Detail from "./Detail";
-import Progress from "./Progress";
 import styled from "styled-components";
 import { Router, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
-import { useDispatch } from "react-redux";
-import { createBucket } from "./redux/modules/bucket";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createBucket,
+  loadBucketFB,
+  addBucketFB,
+} from "./redux/modules/bucket";
 import { db } from "./firebase";
 import {
   collection,
@@ -18,16 +19,28 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+import BucketList from "./BucketList";
+import Detail from "./Detail";
+import Progress from "./Progress";
+import Spinner from "./Spinner";
+
 function App() {
   const text = React.useRef(null);
   const dispatch = useDispatch();
+  const is_loaded = useSelector((state) => state.bucket.is_loaded);
+
+  React.useEffect(() => {
+    //console.log(is_loaded);
+    dispatch(loadBucketFB());
+    // dispatch(isLoaded(is_loaded));
+  }, []);
 
   const addBucketList = () => {
-    dispatch(createBucket({ text: text.current.value, completed: false }));
+    dispatch(addBucketFB({ text: text.current.value, completed: false }));
   };
 
   React.useEffect(() => {
-    console.log(db);
+    //onsole.log(db);
   }, []);
   return (
     <div className="App">
@@ -54,13 +67,7 @@ function App() {
         <button onClick={addBucketList}>추가하기</button>
         {/* <ClickBtn onClick={addBucketList}>추가하기</ClickBtn> */}
       </Input>
-      <button
-        onClick={() => {
-          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        }}
-      >
-        위로가기
-      </button>
+      {!is_loaded && <Spinner />}
     </div>
   );
 }
@@ -112,6 +119,12 @@ const Input = styled.div`
     color: white;
     border: #a673ff;
     background: #a673ff;
+  }
+  & button:hover {
+    width: 25%;
+    color: white;
+    border: #a673ff;
+    background: #bbb5c3;
   }
 `;
 

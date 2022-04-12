@@ -35,7 +35,7 @@ const Detail = (props) => {
       </Button>
       <Button
         variant="outlined"
-        color="primary"
+        // color="primary"
         color="secondary"
         onClick={() => {
           history.goBack();

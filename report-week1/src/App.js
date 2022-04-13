@@ -8,6 +8,7 @@ import AddDetail from "./InputDetail";
 
 function App() {
   const history = useHistory();
+
   return (
     <Div className="App">
       <MainDiv>

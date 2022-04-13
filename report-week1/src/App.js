@@ -43,7 +43,8 @@ const MainDiv = styled.div`
   position: relative;
   flex-direction: column;
   width: 30vw;
-  max-width: 30vw;
+
+  min-width: 30vw;
   height: 80%;
   background: #e3f2fd;
   margin: 5px;

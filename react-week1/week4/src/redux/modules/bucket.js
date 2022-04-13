@@ -61,6 +61,7 @@ export const loadBucketFB = () => {
 export const addBucketFB = (bucket, isload) => {
   return async function (dispatch, getState) {
     dispatch(isLoaded(false));
+    console.log(bucket);
     const docRef = await addDoc(collection(db, "bucket"), bucket);
     // const _bucket = await getDoc(docRef);
     const bucket_data = { id: docRef.id, ...bucket };

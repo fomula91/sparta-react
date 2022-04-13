@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { readWordFB } from "./redux/modules/reducer";
 
 function Detail() {
+  const dispatch = useDispatch();
   const wordList = useSelector((state) => state.word);
+  useEffect(() => {
+    console.log("hey useEffect");
+    dispatch(readWordFB());
+  }, []);
 
   return (
     <>

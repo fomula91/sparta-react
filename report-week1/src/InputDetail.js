@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { createBucket } from "./redux/modules/reducer";
+import { createBucket, createWordFB } from "./redux/modules/reducer";
 import { useDispatch } from "react-redux";
 
 function AddDetail() {
@@ -12,7 +12,7 @@ function AddDetail() {
   const text3 = useRef(null);
   const allText = () => {
     disfatch(
-      createBucket([
+      createWordFB([
         text1.current.value,
         text2.current.value,
         text3.current.value,

@@ -70,15 +70,14 @@ const SubDiv = styled.div`
   align-self: center;
   display: flex;
   flex-direction: column;
-  width: 25vw;
-  height: 18vh;
+
   background: white;
   margin: 5px;
   & > p {
-    margin: 1em 1em auto 1em;
+    margin: 1em;
   }
   & > input {
-    margin: 1em 1em auto 1em;
+    margin: 1em;
 
     outline: none;
     border: 5px solid #b1bfca;

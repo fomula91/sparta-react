@@ -7,7 +7,6 @@ function Detail() {
   const dispatch = useDispatch();
   const wordList = useSelector((state) => state.word);
   useEffect(() => {
-    console.log("hey useEffect");
     dispatch(readWordFB());
   }, []);
 
@@ -31,7 +30,8 @@ function Detail() {
 }
 const SubDiv = styled.div`
   align-self: center;
-  width: 25vw;
+  width: 27vw;
+  min-width: 270px;
   height: 30vh;
   background: white;
   margin: 5px;

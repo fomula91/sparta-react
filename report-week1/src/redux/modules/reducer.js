@@ -1,14 +1,6 @@
 //*********** MODULES ***********//
 import { db } from "../../firebase";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
 //*********** ACTION ***********//
 const DEFAULT = "word/DEFAULT";
@@ -27,7 +19,7 @@ export function createWord(word_list) {
 export const createWordFB = (value) => {
   return async function (dispatch, getState) {
     const new_word = { word1: value[0], word2: value[1], word3: value[2] };
-    const word_index = await addDoc(collection(db, "mywords"), new_word);
+    await addDoc(collection(db, "mywords"), new_word);
     dispatch(createWord(value));
   };
 };

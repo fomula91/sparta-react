@@ -44,8 +44,7 @@ const MainDiv = styled.div`
   position: relative;
   flex-direction: column;
   width: 30vw;
-
-  min-width: 30vw;
+  min-width: 300px;
   height: 80%;
   background: #e3f2fd;
   margin: 5px;
@@ -60,16 +59,16 @@ const ContantDiv = styled.div`
 
   overflow-x: hidden;
   overflow-y: auto;
-  margin: auto;
+  margin: 1em;
   height: 80%;
   max-height: 80vh;
 `;
 const Button = styled.div`
   color: white;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: bolder;
   text-align: center;
-  padding: 1px 8px 14px 8px;
+  padding: 1px;
   border-radius: 100px;
   outline: none;
   background: #b39ddb;
@@ -77,7 +76,7 @@ const Button = styled.div`
   height: 50px;
   position: absolute;
   left: 70%;
-  bottom: 10%;
+  bottom: 5%;
 
   &:hover {
     background: #e6ceff;

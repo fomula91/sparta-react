@@ -1,6 +1,5 @@
 const getCookie = (name) => {
   let value = "; " + document.cookie;
-  console.log(value);
 
   let parts = value.split(`; ${name}=`);
 

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Text, Grid, Button } from "../elements";
 import { getCookie, delCookie } from "../main/Cookie";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreator as userActions } from "../redux/modules/user";
+
 const Header = (props) => {
-  const [is_login, setIslogin] = useState(false);
-  useEffect(() => {
-    let cookie = getCookie("user_id");
-    console.log(cookie);
-    if (cookie) {
-      setIslogin(true);
-    } else {
-      setIslogin(false);
-    }
-  });
+  const dispatch = useDispatch();
+  const is_login = useSelector((state) => state.user.is_login);
   if (is_login)
     return (
       <>

@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { Grid, Text } from "./index";
 
 const Input = (props) => {
-  const { label, placeholder, _onChange } = props;
+  const { label, placeholder, _onChange, type } = props;
 
   return (
     <>
       <Grid>
         <Text margin="0px">{label}</Text>
-        <ElInput placeholder={placeholder} onChange={_onChange} />
+        <ElInput type={type} placeholder={placeholder} onChange={_onChange} />
       </Grid>
     </>
   );
@@ -18,6 +18,7 @@ const Input = (props) => {
 Input.defaultProps = {
   lebel: "text",
   placeholder: "값을 입력해주세요",
+  type: "text",
   _onChange: () => {},
 };
 

@@ -10,14 +10,12 @@ const Login = (props) => {
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
 
-  const changeId = (e) => {
-    setId(e.target.value);
-  };
-  const changePwd = (e) => {
-    setPwd(e.target.value);
-  };
   const login = () => {
-    dispatch(userActions.loginAction({ user_name: "perl" }));
+    if (id === "" || pwd === "") {
+      window.alert("아이디 혹은 비밀번호가 공란입니다.");
+      return;
+    }
+    dispatch(userActions.loginFB(id, pwd));
   };
 
   return (
@@ -33,28 +31,33 @@ const Login = (props) => {
             label="아이디"
             value={id}
             placeholder="아이디를 입력해주세요"
-            _onChange={changeId}
+            _onChange={(e) => {
+              setId(e.target.value);
+            }}
           />
         </Grid>
         <Grid>
           <Input
             label="비밀번호"
             value={pwd}
+            type="password"
             placeholder="비밀번호를 입력해주세요"
-            _onChange={changePwd}
+            _onChange={(e) => {
+              setPwd(e.target.value);
+            }}
           />
         </Grid>
-        <Button text="로그인" _onClick={() => login()} />
+        <Button text="로그인" _onClick={login} />
       </Grid>
     </>
   );
 };
 
-Login.defaultProps = {
-  user_info: {
-    user_id: "wellbing",
-    user_pass: "hahakiki11",
-  },
-};
+// Login.defaultProps = {
+//   // user_info: {
+//   //   user_id: "wellbing",
+//   //   user_pass: "hahakiki11",
+//   // },
+// };
 
 export default Login;

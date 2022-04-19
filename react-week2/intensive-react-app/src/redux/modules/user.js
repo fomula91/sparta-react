@@ -1,17 +1,22 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+
 import { setCookie, getCookie, delCookie } from "../../main/Cookie";
 
+import { auth } from "../../main/firebase";
+import firebase from "firebase/app";
+
 // action
-const LOG_IN = "LOG_IN";
+
 const LOG_OUT = "LOG_OUT";
 const GET_USER = "GET_USER";
+const SET_USER = "SET_USER";
 
 //action Creators
 
-const logIn = createAction(LOG_IN, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
+const setUser = createAction(SET_USER, (user) => ({ user }));
 
 // initialize State
 const initialState = {
@@ -19,24 +24,126 @@ const initialState = {
   is_login: false,
 };
 
+// const initialUser = {
+//   user_name: '';
+// }
+
 // middelware actions
-const loginAction = (user) => {
-  console.log("asd");
-  console.log(user);
+// const loginAction = (user) => {
+//   return function (dispatch, getState, { history }) {
+//     console.log("loginAction");
+//     dispatch(setUser(user));
+//     history.push("/");
+//   };
+// };
+const loginFB = (id, pwd) => {
   return function (dispatch, getState, { history }) {
-    console.log("loginAction........");
-    dispatch(logIn(user));
-    history.push("/");
+    auth
+      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        auth
+          .signInWithEmailAndPassword(id, pwd)
+          .then((user) => {
+            // signed in
+            console.log(user);
+
+            dispatch(
+              setUser({
+                user_name: user.user.displayName,
+                id: id,
+                user_profile: "",
+                uid: user.user.uid,
+              })
+            );
+
+            history.push("/");
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+          });
+        // return firebase.auth().signInWithEmailAndPassword(email, password);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
+};
+
+const signupFB = (id, pwd, user_name) => {
+  return function (dispatch, getState, { history }) {
+    auth
+      .createUserWithEmailAndPassword(id, pwd)
+      .then((user) => {
+        console.log(user);
+        auth.currentUser
+          .updateProfile({
+            displayName: user_name,
+          })
+          .then(() => {
+            dispatch(
+              setUser({
+                user_name: user_name,
+                id: id,
+                user_profile: "",
+                uid: user.user.uid,
+              })
+            );
+            history.push("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        // signUp....
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.errorMessage;
+
+        console.log(errorCode, errorMessage);
+      });
+  };
+};
+
+const loginCheckFB = () => {
+  return function (dispatch, getState, { history }) {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(
+          setUser({
+            user_name: user.displayName,
+            user_profile: "",
+            id: user.email,
+            uid: user.uid,
+          })
+        );
+      } else {
+        dispatch(logOut());
+      }
+    });
+  };
+};
+
+const logoutFB = () => {
+  return function (dispatch, getState, { history }) {
+    auth.signOut().then(() => {
+      dispatch(logOut());
+      history.replace("/");
+    });
   };
 };
 
 export default handleActions(
   {
-    [LOG_IN]: (state, action) =>
+    [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         setCookie("is_login", "success");
         draft.user = action.payload.user;
-
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
@@ -52,10 +159,13 @@ export default handleActions(
 
 // export action Creators
 const actionCreators = {
-  logIn,
   getUser,
   logOut,
-  loginAction,
+
+  signupFB,
+  loginFB,
+  loginCheckFB,
+  logoutFB,
 };
 
 export { actionCreators };

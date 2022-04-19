@@ -22,7 +22,7 @@ if (env === "development") {
   middlewares.push(logger);
 }
 
-// redux deveTools
+// redux devTools
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -31,7 +31,7 @@ const composeEnhancers =
     : compose;
 
 // middlewares binding
-const enhancer = combineReducers(applyMiddleware(...middlewares));
+const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
 //store
 let store = (initialStore) => createStore(rootReducer, enhancer);

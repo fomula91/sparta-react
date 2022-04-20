@@ -8,7 +8,8 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 
 import Header from "./Header";
-import { Grid } from "../elements";
+import { Grid, Button } from "../elements";
+import Permit from "./Permit";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
@@ -22,6 +23,15 @@ function App() {
       dispatch(userActions.loginCheckFB());
     }
   }, []);
+  <Permit>
+    <Button
+      is_float
+      text="+"
+      _onClick={() => {
+        history.push("/write");
+      }}
+    ></Button>
+  </Permit>;
   return (
     <React.Fragment>
       <Grid>
